@@ -1,13 +1,13 @@
 steps:
 # Step 1: Build the Docker image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'asia-south1-docker.pkg.dev/alpine-practice-406505/docker2/app:$SHORT_SHA', '.']
+  args: ['build', '-t', 'asia-south1-docker.pkg.dev/alpine-practice-406505/docker1/app:$SHORT_SHA', '.']
   id: 'Build Docker Image'
   waitFor: ['-']  # This ensures the step starts immediately. 
 
 # Step 2: Push the Docker image to Google Artifact Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'asia-south1-docker.pkg.dev/alpine-practice-406505/docker2/app:$SHORT_SHA']
+  args: ['push', 'asia-south1-docker.pkg.dev/alpine-practice-406505/docker1/app:$SHORT_SHA']
   id: 'Push to Artifact Registry'
   waitFor: ['Build Docker Image']  # This ensures the push only happens after the build step completes.
 
@@ -29,7 +29,7 @@ steps:
   - 'set'
   - 'image'
   - 'deployment/app-deployment'
-  - 'app=asia-south1-docker.pkg.dev/alpine-practice-406505/docker2/app:$SHORT_SHA'
+  - 'app=asia-south1-docker.pkg.dev/alpine-practice-406505/docker1/app:$SHORT_SHA'
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-south1' 
   - 'CLOUDSDK_CONTAINER_CLUSTER=autopilot-cluster-1'
