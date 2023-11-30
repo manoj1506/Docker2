@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: us-central1-docker.pkg.dev/ambient-tuner-373312/my-repo/app:$SHORT_SHA
+        image: asia-south1-docker.pkg.dev/alpine-practice-406505/docker2/app:$SHORT_SHA
         ports:
         - containerPort: 8080
